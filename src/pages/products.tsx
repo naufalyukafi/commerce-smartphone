@@ -1,29 +1,12 @@
 import { Box } from '@chakra-ui/react'
-import React, {useState, useEffect} from 'react'
+import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import CardProduct from '../components/cards/card-product'
-import { APIProduct } from '../utils'
 import { IProduct } from '../utils/types'
+import {MyContext} from '../context/APIProducts'
 
 const Products = () => {
-  const [products, setProducts] = useState<IProduct []>()
-  useEffect(() => {
-    const getProducst = async () => {
-      await fetch(`${APIProduct}products`)
-      .then(res => {
-        return res.json()
-      })
-      .then(data => {
-        setProducts(data)
-      })
-      .catch(err => {
-        console.error(err)
-      })
-    }
-    getProducst()
-  }, [])
-
-  // if(loading) return "Loading...."
+  const { products } = useContext(MyContext);
 
   return (
     <Box display={'flex'} justifyContent="space-between" flexWrap="wrap">

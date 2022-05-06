@@ -1,4 +1,4 @@
-import { Box, HStack, Text, Image, Button, Input, useNumberInput } from '@chakra-ui/react'
+import { Box, HStack, Text, Image, Button } from '@chakra-ui/react'
 import React, {useState} from 'react'
 import { formatNumber } from '../../utils/helper'
 import { ICartProduct } from '../../utils/types'

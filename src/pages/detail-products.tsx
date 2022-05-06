@@ -11,54 +11,25 @@ import {
   HStack,
   Button,
   useToast} from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import {mutate} from 'swr'
 import CardProductDetail from '../components/cards/card-product-detail'
-import { APICart, APIProduct } from '../utils'
+import { MyContext } from '../context/APIProducts'
+import { useRequest } from '../hooks/useRequest'
+import { API_URL } from '../utils/config'
 import { formatNumber } from '../utils/helper'
-import { ICartProduct, IProductDetail } from '../utils/types'
+import { ICartProduct } from '../utils/types'
 
 const DetailProducts = () => {
-  const [product, setProduct] = useState<IProductDetail>()
-  const [productsCart, setProductsCart] = useState<ICartProduct []>()
   const [count, setCount] = useState<number>(0)
   const [valueStorage, setValueStorage] = useState<string>('')
   const [valueColor, setValueColor] = useState<string>('')
   const { productId } = useParams()
   const toast = useToast()
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const getProducst = async () => {
-      await fetch(`${APIProduct}products/${productId}`)
-      .then(res => {
-        return res.json()
-      })
-      .then(data => {
-        setProduct(data)
-      })
-      .catch(err => {
-        console.error(err)
-      })
-    }
-
-    const getProductCarts = async () => {
-      await fetch(`${APICart}carts`)
-      .then(res => {
-        return res.json()
-      })
-      .then(data => {
-        setProductsCart(data)
-      })
-      .catch(err => {
-        console.error(err)
-      })
-    }
-
-    getProductCarts()
-
-    getProducst()
-  }, [])
+  const { carts } = useContext(MyContext)
+  const { data: product } = useRequest('products', productId)
 
   const onCart = () => {
     const saveDataProduct = {
@@ -72,10 +43,11 @@ const DetailProducts = () => {
       image: product?.image_detail
     }
 
-    const findIdCart = productsCart?.find(el => el.id === product?.id)?.id
+    const findIdCart = carts?.find(el => el.id === product?.id)?.id
     const idproduct = product && product.id
     if(findIdCart === idproduct) {
-      fetch(`${APICart}carts/${findIdCart}`, {
+      mutate("carts", (post: ICartProduct[]) => [...post, saveDataProduct], false)
+      fetch(`${API_URL}carts/${findIdCart}`, {
         method: 'PUT', // or 'POST'
         headers: {
           'Content-Type': 'application/json',
@@ -91,12 +63,14 @@ const DetailProducts = () => {
           duration: 9000,
           isClosable: true,
         })
+        mutate(`${API_URL}carts`)
       })
       .catch((error) => {
         console.error('Error:', error);
       });
     } else {
-      fetch(`${APICart}carts`, {
+      mutate("carts", (post: ICartProduct[]) => [saveDataProduct, ...post], false)
+      fetch(`${API_URL}carts`, {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
@@ -112,6 +86,7 @@ const DetailProducts = () => {
           duration: 9000,
           isClosable: true,
         })
+        mutate(`${API_URL}carts`)
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -120,7 +95,6 @@ const DetailProducts = () => {
 
   }
   
-
   const storage = product?.storage.split('|')
   const bonus = product?.bonus.split('|')
   const colour = product?.colour.split('|')
@@ -140,7 +114,7 @@ const DetailProducts = () => {
           {product?.title}
         </Heading>
         <Box height={3} />
-        <Text fontWeight={'bold'} fontSize='lg'>{valueStorage === "" ? storage?.map(item => item)[0] : valueStorage}, {valueColor === "" ? colour?.map(item => item)[0] : valueColor}</Text>
+        <Text fontWeight={'bold'} fontSize='lg'>{valueStorage === "" ? storage?.map((item: string)=> item)[0] : valueStorage}, {valueColor === "" ? colour?.map((item: string) => item)[0] : valueColor}</Text>
         <Box height={3} />
         <Text color={'teal'} fontWeight={'bold'} fontSize='lg'>Rp. {product && formatNumber(product?.price)}</Text>
         <Box height={3} />
@@ -148,7 +122,7 @@ const DetailProducts = () => {
         <Box height={3} />
         <UnorderedList>
           {
-            bonus?.map((item, i) => (
+            bonus?.map((item: string, i: number) => (
               <ListItem key={i}>{item}</ListItem>
             ))
           }
@@ -160,7 +134,7 @@ const DetailProducts = () => {
         <Box height={3} />
         <Box display={'flex'} alignItems="center" gap={5}>
           {
-            storage?.map((item, index) => (
+            storage?.map((item: string, index: number) => (
               <CardProductDetail value={item} valueSelected={valueStorage} handleClick={() => onStorage(item)} key={index}>
                 <Text color={'teal'} fontWeight={'bold'} fontSize='md'>{item}</Text>
               </CardProductDetail>
@@ -173,7 +147,7 @@ const DetailProducts = () => {
         </Heading>
         <Box height={3} />
         <Box display={'flex'} alignItems="center" gap={5}>
-          {colour?.map((item, index) => (
+          {colour?.map((item: string, index: number) => (
             <CardProductDetail key={index} value={item} valueSelected={valueColor} handleClick={() => onColour(item)}>
               <Text color={'teal'} fontWeight={'bold'} fontSize='md'>{item}</Text>
             </CardProductDetail>
@@ -211,7 +185,7 @@ const DetailProducts = () => {
             </HStack>
         </Box>
         <Box height={3} />
-        <Button w="full" colorScheme='teal' onClick={onCart}>Masukan Keranjang</Button>
+        <Button disabled={count === 0} w="full" colorScheme='teal' onClick={onCart}>Masukan Keranjang</Button>
       </Box>
     </Grid>
   )

@@ -1,0 +1,137 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Redmi Note 11",
+      "price": 2780000,
+      "bonus": "Gratis Kartu Perdana XL + Kuota 120GB selama 1 Tahun|Dapatkan Voucher TGD Rp50,000: TGDXIAOM",
+      "storage": "4GB + 128GB|6GB + 128GB",
+      "colour": "Gray|Star Blue",
+      "stok": 5,
+      "image": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1645165300.55391868!288x288!30.png",
+      "image_detail": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1645165330.51247401.png"
+    },
+    {
+      "id": 2,
+      "title": "Redmi Note 11 Pro",
+      "price": 3499000,
+      "bonus": "Kamera pro-grade 108MP|Dapatkan Voucher TGD Rp100,000: TGDXIAOM",
+      "storage": "6GB + 128GB|8GB + 128GB",
+      "colour": "Gray|Star Blue",
+      "stok": 12,
+      "image": "https://i01.appmifile.com/webfile/globalweb/wangmingxin/K6T-White.png?width=160&height=160",
+      "image_detail": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1645166054.275139.png"
+    },
+    {
+      "id": 3,
+      "title": "Redmi Note 11 Pro 5G",
+      "price": 4199000,
+      "bonus": "Gratis Kartu Perdana XL + Kuota 120GB selama 1 Tahun|Dapatkan Voucher TGD Rp50,000: TGDXIAOM",
+      "storage": "4GB + 128GB|8GB + 128GB",
+      "colour": "Gray|Star Blue",
+      "stok": 8,
+      "image": "https://i01.appmifile.com/webfile/globalweb/wangmingxin/K6Sblue.png?width=160&height=160",
+      "image_detail": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1645166378.48264052.png"
+    },
+    {
+      "id": 4,
+      "title": "Redmi 10 2022",
+      "price": 2099000,
+      "bonus": "Gratis Kartu Perdana XL + Kuota 120GB selama 1 Tahun|Dapatkan Voucher TGD Rp50,000: TGDXIAOM",
+      "storage": "4GB + 64GB|6GB + 128GB",
+      "colour": "Gray|Star Blue",
+      "stok": 4,
+      "image": "https://i01.appmifile.com/webfile/globalimg/id/cms/03F37209-BC1B-0DD2-83C5-493F60BB7F7B.jpg?width=160&height=160",
+      "image_detail": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1644317850.02553670.png"
+    },
+    {
+      "id": 5,
+      "title": "Xiaomi 11T",
+      "price": 5999000,
+      "bonus": "Gratis Kartu Perdana XL + Kuota 120GB selama 1 Tahun|Dapatkan Voucher TGD Rp50,000: TGDXIAOM",
+      "storage": "6GB + 128GB|8GB + 256GB",
+      "colour": "Gray|Calestial Blue",
+      "stok": 2,
+      "image": "https://i01.appmifile.com/webfile/globalimg/id/cms/84D6DF20-C51A-524F-EF1C-38AA39F353BF.jpg?width=160&height=160",
+      "image_detail": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1635413563.4127600.png"
+    },
+    {
+      "id": 6,
+      "title": "Redmi Note 10S",
+      "price": 2799000,
+      "bonus": "Gratis Kartu Perdana XL + Kuota 120GB selama 1 Tahun|Dapatkan Voucher TGD Rp50,000: TGDXIAOM",
+      "storage": "6GB + 128GB|64GB + 64GB|8GB + 128GB",
+      "colour": "Gray|Star Blue",
+      "stok": 5,
+      "image": "https://i01.appmifile.com/webfile/globalimg/id/cms/C9EEF80F-E5ED-3D40-2306-CD07F681AD54.jpg",
+      "image_detail": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1634092037.94218982.png"
+    },
+    {
+      "id": 7,
+      "title": "Redmi 9C",
+      "price": 1549000,
+      "bonus": "Come and redeem coupon in Mi Point Center. Enjoy bigger discounts!|Triple Kamera AI 13MP Kamera selfie 5MP|Layar Dot Drop 6.53” HD+ Sensor sidik jari di belakang|Baterai berumur panjang 5000mAh (typ) Siklus pengisian tinggi",
+      "storage": "3GB + 32GB|4GB + 64GB",
+      "colour": "Gray|Orange",
+      "stok": 19,
+      "image": "https://i01.appmifile.com/webfile/globalweb/wangmingxin/C3M.png",
+      "image_detail": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1599469976.45152274.png"
+    },
+    {
+      "id": 8,
+      "title": "Galaxy S22 Ultra",
+      "price": 17999000,
+      "bonus": "Gratis Kartu Perdana XL + Kuota 120GB selama 1 Tahun|Dapatkan Voucher TGD Rp50,000: TGDXIAOM",
+      "storage": "4GB + 128GB|6GB + 256GB|6GB + 512GB",
+      "colour": "Gray|Burgundy",
+      "stok": 2,
+      "image": "https://images.samsung.com/is/image/samsung/p6pim/id/2202/gallery/id-galaxy-s22-ultra-s908-sm-s908edrdxid-thumb-530762540?$216_216_PNG$",
+      "image_detail": "https://images.samsung.com/id/smartphones/galaxy-s22-ultra/buy/S22_Ultra_Carousel_GroupKV_PC.jpg?imwidth=1366"
+    },
+    {
+      "id": 9,
+      "title": "Samsung Z1",
+      "price": 4180000,
+      "bonus": "Gratis Kartu Perdana XL + Kuota 120GB selama 1 Tahun|Dapatkan Voucher TGD Rp50,000: TGDXIAOM",
+      "storage": "4GB + 128GB|6GB + 128GB",
+      "colour": "Gray|Star Blue",
+      "stok": 2,
+      "image": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1645165300.55391868!288x288!30.png",
+      "image_detail": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1645165330.51247401.png"
+    },
+    {
+      "id": 10,
+      "title": "Galaxy A53 5G",
+      "price": 1080000,
+      "bonus": "Mulai dari Rp 499.917/bln. Kalkulator Finansial|Quad camera with 64MP OIS camera support|5nm Octa core processor with extra virtual memory for RAM boost",
+      "storage": "8GB + 128GB|8GB + 256GB",
+      "colour": "Black|Blue",
+      "stok": 5,
+      "image": "https://images.samsung.com/is/image/samsung/assets/id/2203/pcd/PCD_Product-Tile_PC_160X160.png?$160_160_PNG$",
+      "image_detail": "https://images.samsung.com/is/image/samsung/p6pim/id/2202/gallery/id-galaxy-a53-5g-a536-sm-a536ezkgxid-531435883?$684_547_PNG$"
+    },
+    {
+      "id": 11,
+      "title": "Asus",
+      "price": 2180000,
+      "bonus": "Gratis Kartu Perdana XL + Kuota 120GB selama 1 Tahun|Dapatkan Voucher TGD Rp50,000: TGDXIAOM",
+      "storage": "4GB + 128GB|6GB + 128GB",
+      "colour": "Gray|Star Blue",
+      "stok": 2,
+      "image": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1645165300.55391868!288x288!30.png",
+      "image_detail": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1645165330.51247401.png"
+    },
+    {
+      "id": 12,
+      "title": "Asus 1",
+      "price": 800000,
+      "bonus": "Gratis Kartu Perdana XL + Kuota 120GB selama 1 Tahun|Dapatkan Voucher TGD Rp50,000: TGDXIAOM",
+      "storage": "4GB + 128GB|6GB + 128GB",
+      "colour": "Gray|Star Blue",
+      "stok": 2,
+      "image": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1645165300.55391868!288x288!30.png",
+      "image_detail": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1645165330.51247401.png"
+    }
+  ],
+  "carts": []
+}

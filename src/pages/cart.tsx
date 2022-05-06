@@ -20,37 +20,24 @@ import {
     Td,
     TableContainer
 } from '@chakra-ui/react'
-import React, {useState, useEffect} from 'react'
+import React, {useState, useContext} from 'react'
+import {mutate} from 'swr'
 import CartProduct from '../components/cards/cart-product'
-import { APICart } from '../utils'
-import { ICartProduct } from '../utils/types'
+import { MyContext } from '../context/APIProducts'
 import { formatNumber } from '../utils/helper'
+import { API_URL } from '../utils/config'
+import { ICartProduct } from '../utils/types'
 
 const Cart = () => {
-    const [products, setProducts] = useState<ICartProduct []>()
     const [visible, setVisible] = useState<boolean>(false)
     const toast = useToast()
-    const getProducts = async () => {
-        await fetch(`${APICart}carts`)
-        .then(res => {
-            return res.json()
-        })
-        .then(data => {
-            setProducts(data)
-        })
-        .catch(err => {
-            console.error(err)
-        })
-    }
-
-    useEffect(() => {    
-        getProducts()
-      }, [])
+    const { carts } = useContext(MyContext)
 
     const handleDelete = (id: number) => {
     let conf = window.confirm('Apakah anda yakin ingin menghapus product ini?')
     if(conf === true) {
-        fetch(`${APICart}carts/${id}`, {
+        mutate(`carts/${id}`, (post: ICartProduct[]) => [id, ...post], false)
+        fetch(`${API_URL}carts/${id}`, {
             method: 'DELETE'
             })
             .then(() => {
@@ -60,30 +47,30 @@ const Cart = () => {
                 duration: 9000,
                 isClosable: true,
             })
-            getProducts()
-            })
+            mutate('http://localhost:3000/carts')
+        })
     }
     
     }
 
     const total = (data: any) => data && data.reduce((saldoAwal: number, saldoAkhir: number) => saldoAwal + saldoAkhir, 0);
-    const sumBuy = products?.map(item => item.countBuy * item.price)
+    const sumBuy = carts?.map(item => item.countBuy * item.price)
     const confirmBuy = () => setVisible(true)
     
     return (
         <Box>
             {
-                products && products.length === 0 ? (
+                carts && carts.length === 0 ? (
                     <>
                         <Box minHeight={'50vh'} textAlign="center" justifyContent={'center'} alignItems="center" alignContent={'center'} display="flex">
                             <Box>
                                 <Heading color="teal" as='h3' size="lg" fontWeight={'bold'} className='text-center fw-bold'>Mohon Maaf Keranjang Belum Terisi!</Heading>
-                                <Text mt={5} className='text-center'>Tambahkan product terlebih dahul</Text>
+                                <Text mt={5} className='text-center'>Tambahkan product terlebih dahulu</Text>
                             </Box>
                         </Box>
                     </>
                 ): 
-                products && products.map((el, index) => (
+                carts && carts.map(el => (
                     <CartProduct 
                         colour={el?.colour}
                         countBuy={el?.countBuy}
@@ -99,7 +86,7 @@ const Cart = () => {
                 ))
             }
             <Box height={6} />
-            {products?.length !== 0 && <Button colorScheme={'teal'} width="full" onClick={confirmBuy}>Konfirmasi</Button>}
+            {carts?.length !== 0 && <Button colorScheme={'teal'} width="full" onClick={confirmBuy}>Konfirmasi</Button>}
             
             <Drawer
                 isOpen={visible}
@@ -125,7 +112,7 @@ const Cart = () => {
                         </Thead>
                         <Tbody>
                             {
-                                products?.map((item, i) => (
+                                carts?.map((item, i) => (
                                     <Tr>
                                         <Td>{item.title}</Td>
                                         <Td>Rp. {formatNumber(item.price)}</Td>

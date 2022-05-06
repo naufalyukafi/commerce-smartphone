@@ -1,9 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layouts from './components/layouts';
 import { DetailProducts, Products, Cart, About, Home } from './pages';
+import APIProducts from './context/APIProducts'
 
 function App() {
   return (
+    <APIProducts>
     <BrowserRouter>
     <Layouts>
       <Routes>
@@ -15,6 +17,7 @@ function App() {
       </Routes>
     </Layouts>
     </BrowserRouter>
+    </APIProducts>
   );
 }
 

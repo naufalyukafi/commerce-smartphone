@@ -30,8 +30,25 @@ interface ICartProduct {
     onDelete: () => void,
 }
 
+interface IUseRequest {
+    path: string,
+    name?: any
+}
+
+interface IContextValue {
+    products: IProductDetail[],
+    carts: ICartProduct[],
+}
+
+interface IContext {
+    children: React.ReactNode;
+}
+
 export type {
     IProduct,
     IProductDetail,
-    ICartProduct
+    ICartProduct,
+    IUseRequest,
+    IContext,
+    IContextValue
 }
