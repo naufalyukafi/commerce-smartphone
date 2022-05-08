@@ -7,14 +7,20 @@ import {
   MenuButton,
   IconButton,
   Heading,
-  Input
+  Input,
+  Badge
 } from '@chakra-ui/react'
+import { useContext } from 'react';
 import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
+import { MyContext } from '../context/APIProducts';
+import { sumArrNumber } from '../utils/helper';
 
 
 const Navbar = ({...props }: any) => {
+  const { carts } = useContext(MyContext)
   let navigate = useNavigate();
+  const arrCountBuy = carts?.map((item) => item.countBuy)
   return (
     <Box
     top={0}
@@ -56,6 +62,7 @@ const Navbar = ({...props }: any) => {
           style={{marginRight: 15}}
           onClick={() => navigate('/cart')}
         />
+        <Badge marginLeft={'-12px'} marginRight="6px" marginTop="-40px">{sumArrNumber(arrCountBuy)}</Badge>
         <Menu>
           <MenuButton 
             aria-label='Options'

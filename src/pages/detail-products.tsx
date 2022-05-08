@@ -15,6 +15,7 @@ import { useContext, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import {mutate} from 'swr'
 import CardProductDetail from '../components/cards/card-product-detail'
+import ModalAddCart from '../components/modal-add-cart'
 import { MyContext } from '../context/APIProducts'
 import { useRequest } from '../hooks/useRequest'
 import { API_URL } from '../utils/config'
@@ -22,7 +23,8 @@ import { formatNumber } from '../utils/helper'
 import { ICartProduct } from '../utils/types'
 
 const DetailProducts = () => {
-  const [count, setCount] = useState<number>(0)
+  const {count, dispatch} = useContext(MyContext)
+  const [visible, setVisible] = useState<boolean>(false)
   const [valueStorage, setValueStorage] = useState<string>('')
   const [valueColor, setValueColor] = useState<string>('')
   const { productId } = useParams()
@@ -31,7 +33,9 @@ const DetailProducts = () => {
   const { carts } = useContext(MyContext)
   const { data: product } = useRequest('products', productId)
 
-  const onCart = () => {
+  const findDataCartById = carts?.find(element => element?.id === product?.id)
+
+  const onCart = (type: string) => {
     const saveDataProduct = {
       id: product?.id,
       title: product?.title,
@@ -56,13 +60,16 @@ const DetailProducts = () => {
       })
       .then(response => response.json())
       .then(() => {
-        navigate('/cart')
-        toast({
-          title: 'Berhasil menambahkan ke keranjang',
-          status: 'success',
-          duration: 9000,
-          isClosable: true,
-        })
+        if(type === 'detailCart') {
+          navigate('/cart-detail')
+          toast({
+            title: 'Berhasil menambahkan ke keranjang',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          })
+        }
+        else setVisible(true)
         mutate(`${API_URL}carts`)
       })
       .catch((error) => {
@@ -79,13 +86,16 @@ const DetailProducts = () => {
       })
       .then(response => response.json())
       .then(() => {
-        navigate('/cart')
-        toast({
-          title: 'Berhasil menambahkan ke keranjang',
-          status: 'success',
-          duration: 9000,
-          isClosable: true,
-        })
+        if(type === 'detailCart') {
+          navigate('/cart-detail')
+          toast({
+            title: 'Berhasil menambahkan ke keranjang',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          })
+        } 
+        else setVisible(true)
         mutate(`${API_URL}carts`)
       })
       .catch((error) => {
@@ -160,11 +170,11 @@ const DetailProducts = () => {
         <Box display={'flex'} alignItems="center" gap={5}>
           <Text fontSize='md' mt={2}>Stok : {product?.stok}</Text>
           <HStack maxW='180px' mt={2}>
-            <Button disabled={count === 0} backgroundColor={'white'} onClick={() => setCount(count - 1)}>-</Button>
+            <Button disabled={count === 0} backgroundColor={'white'} onClick={() => dispatch({type: 'decrement'})}>-</Button>
             <Box bg="white" borderRadius={2} paddingLeft={10} paddingTop={2} paddingBottom={2} paddingRight={10}>
               <Text>{count}</Text>
             </Box>
-            <Button disabled={count === product?.stok} backgroundColor={'white'} onClick={() => setCount(count + 1)}>+</Button>
+            <Button disabled={count === product?.stok} backgroundColor={'white'} onClick={() => dispatch({type: 'increment'})}>+</Button>
           </HStack>
         </Box>
         <Box height={3} />
@@ -185,8 +195,29 @@ const DetailProducts = () => {
             </HStack>
         </Box>
         <Box height={3} />
-        <Button disabled={count === 0} w="full" colorScheme='teal' onClick={onCart}>Masukan Keranjang</Button>
+        <HStack>
+          <Button disabled={count === 0} w="full" colorScheme='teal' onClick={() => onCart('cart')}>Masukan Keranjang</Button>
+          <Button disabled={count === 0} w="full" colorScheme='teal' onClick={() => onCart('detailCart')}>Bayar Langsung</Button>
+        </HStack>
       </Box>
+      <ModalAddCart isOpen={visible} isClose={() => setVisible(prev => !prev)}>
+        <HStack 
+          bg={'white'} 
+          justifyContent="space-between" 
+          alignItems={'center'} 
+          flexWrap="wrap"
+          p={5}
+          mt={6}
+        > 
+        <HStack gap={3}>
+          <Image objectFit={'cover'} width={20} height={20} src={findDataCartById?.image} alt={findDataCartById?.title} />
+          <Text maxW={40} fontSize='md' mt={2} fontWeight="bold">{`${findDataCartById?.title} ${findDataCartById?.colour} ${findDataCartById?.storage}`}</Text>
+        </HStack>
+        <Box>
+          <Button colorScheme={'teal'} textAlign='right'>Bayar Sekarang</Button>
+        </Box>
+        </HStack>
+      </ModalAddCart>
     </Grid>
   )
 }

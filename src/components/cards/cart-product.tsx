@@ -22,7 +22,7 @@ const CartProduct = ({title, storage, colour, stok, countBuy, price, image, onDe
                 <HStack gap={3}>
                     <Text fontSize='md' mt={2} fontWeight="bold">Rp.{formatNumber(price)}</Text>
                     <HStack maxW='180px' mt={2}>
-                        <Button disabled={count === 0} backgroundColor={'white'} onClick={() => setCount(count - 1)}>-</Button>
+                        <Button disabled={count === 1} backgroundColor={'white'} onClick={() => setCount(count - 1)}>-</Button>
                         <Box bg="white" borderRadius={2} paddingLeft={10} paddingTop={2} paddingBottom={2} paddingRight={10}>
                         <Text>{count}</Text>
                         </Box>

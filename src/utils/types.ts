@@ -1,3 +1,5 @@
+import React from "react";
+
 interface IProduct {
     id: number,
     title: string,
@@ -38,10 +40,22 @@ interface IUseRequest {
 interface IContextValue {
     products: IProductDetail[],
     carts: ICartProduct[],
+    count: number,
+    dispatch: React.Dispatch<IAction>
 }
 
 interface IContext {
     children: React.ReactNode;
+}
+
+interface IAction {
+    type: string
+}
+
+interface IModalAddCart {
+    isOpen: boolean,
+    isClose: () => void,
+    children: React.ReactNode
 }
 
 export type {
@@ -50,5 +64,7 @@ export type {
     ICartProduct,
     IUseRequest,
     IContext,
-    IContextValue
+    IContextValue,
+    IAction,
+    IModalAddCart
 }

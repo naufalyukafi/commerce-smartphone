@@ -6,3 +6,5 @@ export const formatNumber = (inputNumber: number) => {
     }
     return (formetedNumber);
 };
+
+export const sumArrNumber = (data: number[]) => data?.reduce((a: number, b: number) => a + b, 0) 

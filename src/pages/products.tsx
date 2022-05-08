@@ -6,13 +6,13 @@ import { IProduct } from '../utils/types'
 import {MyContext} from '../context/APIProducts'
 
 const Products = () => {
-  const { products } = useContext(MyContext);
+  const { products, dispatch } = useContext(MyContext);
 
   return (
     <Box display={'flex'} justifyContent="space-between" flexWrap="wrap">
       {
         products?.map((item: IProduct) => (
-          <Link to={`/products/${item.id}`}>
+          <Link onClick={() =>  dispatch({type: 'reset'})} to={`/products/${item.id}`}>
             <CardProduct 
               id={item.id}
               title={item.title}
